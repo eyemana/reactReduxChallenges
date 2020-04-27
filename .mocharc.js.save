@@ -1,0 +1,18 @@
+"use strict";
+
+module.exports = {
+  diff: true,
+  slow: 75,
+  timeout: 2000,
+  ui: "tdd",
+  "watch-files": ["src/**/*.js", "test/**/*.js"],
+  color: true,
+  require: ["@babel/register", "mocha-snapshots"],
+};
+
+// -u tdd
+// --timeout 999999
+// --colors
+// --require @babel/register
+// --require src/test/helpers/testSetup.js
+// --require mocha-snapshots
