@@ -1,0 +1,330 @@
+exports["sets submit button label 'Saving...' when saving is true(0)"] = {
+  "type": "form",
+  "props": {},
+  "children": [
+    {
+      "type": "h2",
+      "props": {},
+      "children": [
+        "Edit",
+        " Course"
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "title"
+          },
+          "children": [
+            "Title"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "input",
+              "props": {
+                "type": "text",
+                "name": "title",
+                "className": "form-control",
+                "value": "Securing React Apps with Auth0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "authorId"
+          },
+          "children": [
+            "Author"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "select",
+              "props": {
+                "name": "authorId",
+                "value": 1,
+                "className": "form-control"
+              },
+              "children": [
+                {
+                  "type": "option",
+                  "props": {
+                    "value": ""
+                  },
+                  "children": [
+                    "Select Author"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 1
+                  },
+                  "children": [
+                    "Cory House"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 2
+                  },
+                  "children": [
+                    "Scott Allen"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 3
+                  },
+                  "children": [
+                    "Dan Wahlin"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "category"
+          },
+          "children": [
+            "Category"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "input",
+              "props": {
+                "type": "text",
+                "name": "category",
+                "className": "form-control",
+                "value": "JavaScript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "props": {
+        "type": "submit",
+        "disabled": true,
+        "className": "btn btn-primary"
+      },
+      "children": [
+        "Saving..."
+      ]
+    }
+  ]
+};
+
+exports["sets submit button label 'Save' when saving is false(0)"] = {
+  "type": "form",
+  "props": {},
+  "children": [
+    {
+      "type": "h2",
+      "props": {},
+      "children": [
+        "Edit",
+        " Course"
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "title"
+          },
+          "children": [
+            "Title"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "input",
+              "props": {
+                "type": "text",
+                "name": "title",
+                "className": "form-control",
+                "value": "Securing React Apps with Auth0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "authorId"
+          },
+          "children": [
+            "Author"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "select",
+              "props": {
+                "name": "authorId",
+                "value": 1,
+                "className": "form-control"
+              },
+              "children": [
+                {
+                  "type": "option",
+                  "props": {
+                    "value": ""
+                  },
+                  "children": [
+                    "Select Author"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 1
+                  },
+                  "children": [
+                    "Cory House"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 2
+                  },
+                  "children": [
+                    "Scott Allen"
+                  ]
+                },
+                {
+                  "type": "option",
+                  "props": {
+                    "value": 3
+                  },
+                  "children": [
+                    "Dan Wahlin"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "props": {
+        "className": "form-group"
+      },
+      "children": [
+        {
+          "type": "label",
+          "props": {
+            "htmlFor": "category"
+          },
+          "children": [
+            "Category"
+          ]
+        },
+        {
+          "type": "div",
+          "props": {
+            "className": "field"
+          },
+          "children": [
+            {
+              "type": "input",
+              "props": {
+                "type": "text",
+                "name": "category",
+                "className": "form-control",
+                "value": "JavaScript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "props": {
+        "type": "submit",
+        "disabled": false,
+        "className": "btn btn-primary"
+      },
+      "children": [
+        "Save"
+      ]
+    }
+  ]
+};
+

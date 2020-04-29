@@ -50,6 +50,6 @@ configure({ adapter: new Adapter() });
 // mocha and fetch don't get along, so need this
 require("isomorphic-fetch");
 
-import mochaSnapshots from "mocha-snapshots";
+// import mochaSnapshots from "mocha-snapshots";
 
-mochaSnapshots.setup({ sanitizeClassNames: false });
+// mochaSnapshots.setup({ sanitizeClassNames: false });
