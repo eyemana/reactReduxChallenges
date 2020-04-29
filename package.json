@@ -9,10 +9,15 @@
     "test:snapshots": "jest --testPathPattern=Snapshots",
     "test:debug": "set NODE_ENV=test&& mocha --require @babel/register --require src/test/helpers/testSetup.mocha.js --exclude \"src/**/*.Snapshots.*.js\"  \"src/**/*.test.js\" --inspect-brk",
     "test:mocha": "set NODE_ENV=test&& mocha --require @babel/register --require src/test/helpers/testSetup.mocha.js --exclude \"src/**/*.Snapshots.*.js\" \"src/**/*.test.js\"",
-    "test": "set NODE_ENV=test&& mocha --require @babel/register --require src/test/helpers/testSetup.mocha.js --exclude \"src/**/*.Snapshots.*.js\" \"src/**/*.test.js\"",
+    "test": "set NODE_ENV=test&& mocha -w --require @babel/register --require src/test/helpers/testSetup.mocha.js --exclude \"src/**/*.Snapshots.*.js\" \"src/**/*.test.js\"",
+    "test:ci": "set NODE_ENV=production&& mocha --require @babel/register --require src/test/helpers/testSetup.mocha.js --exclude \"src/**/*.Snapshots.*.js\" \"src/**/*.test.js\"",
     "test:mochaSnapshots": "set NODE_ENV=test&& mocha --require @babel/register --require src/test/helpers/testSetup.mocha.js --require mocha-snapshots \"src/**/*.Snapshots.Mocha.test.js\"",
     "test:all": "npm run test:snapshots && npm run test:mocha",
-    "dev:hot": "webpack-dev-server --config webpack.config.dev.js --port 3000 --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./"
+    "clean:build": "rimraf ./build && mkdir build",
+    "prebuild": "run-p clean:build test:ci",
+    "build": "webpack --config webpack.config.prod.js",
+    "postbuild": "run-p start:api serve:build",
+    "serve:build": "http-server -p 4077 ./build"
   },
   "jest": {
     "testEnvironment": "node",
