@@ -26,8 +26,8 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // Simulate delay on all requests
-server.use(function(req, res, next) {
-  setTimeout(next, 2000);
+server.use(function (req, res, next) {
+  setTimeout(next, 300);
 });
 
 // Declaring custom routes below. Add custom routes before JSON Server router
@@ -41,12 +41,21 @@ server.use((req, res, next) => {
   next();
 });
 
-server.post("/courses/", function(req, res, next) {
+server.post("/courses/", function (req, res, next) {
   const error = validateCourse(req.body);
   if (error) {
     res.status(400).send(error);
   } else {
     req.body.slug = createSlug(req.body.title); // Generate a slug for new courses.
+    next();
+  }
+});
+
+server.post("/authors/", function (req, res, next) {
+  const error = validateAuthor(req.body);
+  if (error) {
+    res.status(400).send(error);
+  } else {
     next();
   }
 });
@@ -74,5 +83,10 @@ function validateCourse(course) {
   if (!course.title) return "Title is required.";
   if (!course.authorId) return "Author is required.";
   if (!course.category) return "Category is required.";
+  return "";
+}
+
+function validateAuthor(author) {
+  if (!author.name) return "Name is required.";
   return "";
 }

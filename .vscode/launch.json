@@ -49,13 +49,6 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "env": { "NODE_ENV": "development" }
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\start:api"
     }
   ]
 }
