@@ -38,7 +38,7 @@ const courses = [
     id: 6,
     title: "Building Applications in React and Flux",
     slug: "react-flux-building-applications",
-    authorId: 3,
+    authorId: 2,
     category: "JavaScript",
   },
   {
@@ -59,14 +59,14 @@ const courses = [
     id: 9,
     title: "Becoming an Outlier: Reprogramming the Developer Mind",
     slug: "career-reboot-for-developer-mind",
-    authorId: 3,
+    authorId: 2,
     category: "Career",
   },
   {
     id: 10,
     title: "Web Component Fundamentals",
     slug: "web-components-shadow-dom",
-    authorId: 3,
+    authorId: 2,
     category: "HTML5",
   },
 ];

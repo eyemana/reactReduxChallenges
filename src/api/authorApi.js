@@ -16,7 +16,8 @@ export function saveAuthor(author) {
 }
 
 export function deleteAuthor(authorId) {
-  return fetch(baseUrl + authorId, { method: "DELETE" })
+  // if this were a real ap
+  return fetch(baseUrl + "1", { method: "DELETE" })
     .then(handleResponse)
     .catch(handleError);
 }

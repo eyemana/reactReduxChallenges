@@ -56,6 +56,6 @@ export function deleteAuthor(author) {
     // Doing optimistic delete, so not dispatching begin/end api call
     // actions, or apiCallError action since we're not showing the loading status for this.
     dispatch(deleteAuthorOptimistic(author));
-    return authorApi.deleteAuthor(author.id);
+    return authorApi.deleteAuthor(author);
   };
 }

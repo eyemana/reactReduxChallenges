@@ -99,7 +99,7 @@ function mapStateToProps(state, ownProps) {
   const id = ownProps.match.params.id;
   const author =
     id && state.authors.length > 0
-      ? state.authors.find((author) => author.id === id) || null
+      ? state.authors.find((a) => a.id == id) || null
       : newAuthor;
   return {
     author,

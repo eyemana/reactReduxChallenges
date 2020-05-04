@@ -51,6 +51,15 @@ server.post("/courses/", function (req, res, next) {
   }
 });
 
+server.delete("/authors/", function (req, res, next) {
+  const error = validateAuthorOnDelete(req.body);
+  if (error) {
+    res.status(400).send(error);
+  } else {
+    next();
+  }
+});
+
 server.post("/authors/", function (req, res, next) {
   const error = validateAuthor(req.body);
   if (error) {
@@ -88,5 +97,13 @@ function validateCourse(course) {
 
 function validateAuthor(author) {
   if (!author.name) return "Name is required.";
+  return "";
+}
+
+function validateAuthorOnDelete(author) {
+  debugger;
+  let authorCourses = router.db.get("courses").find({ authorId: author });
+  if (authorCourses)
+    return "Author has active courses.  Please delete those and then try again.";
   return "";
 }
