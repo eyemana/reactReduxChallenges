@@ -27,7 +27,7 @@ server.use(jsonServer.bodyParser);
 
 // Simulate delay on all requests
 server.use(function (req, res, next) {
-  setTimeout(next, 300);
+  setTimeout(next, 100);
 });
 
 // Declaring custom routes below. Add custom routes before JSON Server router
@@ -50,9 +50,7 @@ server.use((req, res, next) => {
     if (pathparts.length > 2)
       switch (pathparts[pathparts.length - 2]) {
         case "authors":
-          error = validateAuthorOnDelete(
-            pathparts[pathparts.length - 1].toString()
-          );
+          error = validateAuthorOnDelete(pathparts[pathparts.length - 1]);
           if (error.length > 0) {
             res.status(400).send(error);
             return;

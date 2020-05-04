@@ -74,7 +74,7 @@ export function ManageCoursePage({
   }
 
   //return authors.length === 0 || courses.length === 0 ? (
-  return this.props.loading ? (
+  return props.loading ? (
     <Spinner />
   ) : (
     <CourseForm

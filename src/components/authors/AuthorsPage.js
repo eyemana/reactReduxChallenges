@@ -81,7 +81,7 @@ function mapStateToProps(state) {
   let authorCourses = "";
   return {
     authors:
-      state.courses.length === 0
+      state.courses.length === 0 && state.apiCallsInProgress > 0
         ? []
         : state.authors.map((author) => {
             authorCourses = state.courses.filter(
