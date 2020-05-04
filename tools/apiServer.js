@@ -41,21 +41,36 @@ server.use((req, res, next) => {
   next();
 });
 
+// validate DELETE requests, if necessary
+server.use((req, res, next) => {
+  if (req.method === "DELETE") {
+    let error = "";
+    let pathparts = req.path.split("/");
+
+    if (pathparts.length > 2)
+      switch (pathparts[pathparts.length - 2]) {
+        case "authors":
+          error = validateAuthorOnDelete(
+            pathparts[pathparts.length - 1].toString()
+          );
+          if (error.length > 0) {
+            res.status(400).send(error);
+            return;
+          }
+          break;
+        default:
+          break;
+      }
+  }
+  next();
+});
+
 server.post("/courses/", function (req, res, next) {
   const error = validateCourse(req.body);
   if (error) {
     res.status(400).send(error);
   } else {
     req.body.slug = createSlug(req.body.title); // Generate a slug for new courses.
-    next();
-  }
-});
-
-server.delete("/authors/", function (req, res, next) {
-  const error = validateAuthorOnDelete(req.body);
-  if (error) {
-    res.status(400).send(error);
-  } else {
     next();
   }
 });
@@ -100,10 +115,13 @@ function validateAuthor(author) {
   return "";
 }
 
-function validateAuthorOnDelete(author) {
-  debugger;
-  let authorCourses = router.db.get("courses").find({ authorId: author });
-  if (authorCourses)
+function validateAuthorOnDelete(id) {
+  let authorCourses =
+    router.db
+      .get("courses")
+      .filter((c) => c.authorId == id)
+      .value() || [];
+  if (authorCourses.length > 0)
     return "Author has active courses.  Please delete those and then try again.";
   return "";
 }
