@@ -73,7 +73,8 @@ export function ManageCoursePage({
       });
   }
 
-  return authors.length === 0 || courses.length === 0 ? (
+  //return authors.length === 0 || courses.length === 0 ? (
+  return this.props.loading ? (
     <Spinner />
   ) : (
     <CourseForm
@@ -94,6 +95,7 @@ ManageCoursePage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   saveCourse: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
 
@@ -111,6 +113,7 @@ function mapStateToProps(state, ownProps) {
     course,
     courses: state.courses,
     authors: state.authors,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 

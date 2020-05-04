@@ -44,22 +44,25 @@ class CoursesPage extends React.Component {
       <>
         {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
         <h2>Courses</h2>
+        <button
+          style={{ marginBottom: 20 }}
+          className="btn btn-primary add-course"
+          onClick={() => this.setState({ redirectToAddCoursePage: true })}
+        >
+          Add Course
+        </button>
         {this.props.loading ? (
           <Spinner />
-        ) : (
+        ) : this.props.courses.length > 0 ? (
           <>
-            <button
-              style={{ marginBottom: 20 }}
-              className="btn btn-primary add-course"
-              onClick={() => this.setState({ redirectToAddCoursePage: true })}
-            >
-              Add Course
-            </button>
-
             <CourseList
               onDeleteClick={this.handleDeleteCourse}
               courses={this.props.courses}
             />
+          </>
+        ) : (
+          <>
+            <h5>There are no courses currently in the DB.</h5>
           </>
         )}
       </>

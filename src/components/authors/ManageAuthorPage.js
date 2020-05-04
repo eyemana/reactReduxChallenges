@@ -71,7 +71,8 @@ export function ManageAuthorPage({
       });
   }
 
-  return authors.length === 0 || courses.length === 0 ? (
+  //return authors.length === 0 || courses.length === 0 ? (
+  return this.props.loading ? (
     <Spinner />
   ) : (
     <AuthorForm
@@ -92,6 +93,7 @@ ManageAuthorPage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   saveAuthor: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
 
@@ -105,6 +107,7 @@ function mapStateToProps(state, ownProps) {
     author,
     courses: state.courses,
     authors: state.authors,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 

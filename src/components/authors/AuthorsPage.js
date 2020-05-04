@@ -44,22 +44,25 @@ class AuthorsPage extends React.Component {
       <>
         {this.state.redirectToAddAuthorPage && <Redirect to="/author" />}
         <h2>Authors</h2>
+        <button
+          style={{ marginBottom: 20 }}
+          className="btn btn-primary add-author"
+          onClick={() => this.setState({ redirectToAddAuthorPage: true })}
+        >
+          Add Author
+        </button>
         {this.props.loading ? (
           <Spinner />
-        ) : (
+        ) : this.props.authors.length > 0 ? (
           <>
-            <button
-              style={{ marginBottom: 20 }}
-              className="btn btn-primary add-author"
-              onClick={() => this.setState({ redirectToAddAuthorPage: true })}
-            >
-              Add Author
-            </button>
-
             <AuthorList
               onDeleteClick={this.handleDeleteAuthor}
               authors={this.props.authors}
             />
+          </>
+        ) : (
+          <>
+            <h5>There are no authors currently in the DB.</h5>
           </>
         )}
       </>
