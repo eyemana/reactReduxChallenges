@@ -4,15 +4,30 @@ import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+// eslint-disable-next-line import/no-named-as-default
 import CourseList from "./CourseList";
 import { Redirect } from "react-router-dom";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
 class CoursesPage extends React.Component {
-  state = {
-    redirectToAddCoursePage: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      courses: [],
+      filteredCourses: [],
+      redirectToAddCoursePage: false,
+    };
+  }
+
+  componentWillMount() {
+    const { courses } = this.props;
+
+    this.setState({
+      courses,
+      filteredCourses: courses,
+    });
+  }
 
   componentDidMount() {
     const { courses, authors, actions } = this.props;
@@ -29,6 +44,17 @@ class CoursesPage extends React.Component {
       });
     }
   }
+
+  filterCoursesByAuthor = (authorId) => {
+    let filteredCourses = this.state.courses;
+    if (authorId)
+      filteredCourses = filteredCourses.filter(
+        (course) => course.authorId == authorId
+      );
+    this.setState({
+      filteredCourses,
+    });
+  };
 
   handleDeleteCourse = async (course) => {
     toast.success("Course deleted");
@@ -57,7 +83,9 @@ class CoursesPage extends React.Component {
           <>
             <CourseList
               onDeleteClick={this.handleDeleteCourse}
-              courses={this.props.courses}
+              courses={this.state.filteredCourses}
+              authors={this.props.authors}
+              onAuthorFilterChange={this.filterCoursesByAuthor}
             />
           </>
         ) : (
