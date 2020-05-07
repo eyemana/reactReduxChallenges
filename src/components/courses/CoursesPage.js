@@ -11,23 +11,10 @@ import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
 class CoursesPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      courses: [],
-      filteredCourses: [],
-      redirectToAddCoursePage: false,
-    };
-  }
-
-  componentWillMount() {
-    const { courses } = this.props;
-
-    this.setState({
-      courses,
-      filteredCourses: courses,
-    });
-  }
+  state = {
+    filteredAuthorId: "",
+    redirectToAddCoursePage: false,
+  };
 
   componentDidMount() {
     const { courses, authors, actions } = this.props;
@@ -45,15 +32,8 @@ class CoursesPage extends React.Component {
     }
   }
 
-  filterCoursesByAuthor = (authorId) => {
-    let filteredCourses = this.state.courses;
-    if (authorId)
-      filteredCourses = filteredCourses.filter(
-        (course) => course.authorId == authorId
-      );
-    this.setState({
-      filteredCourses,
-    });
+  handleAuthorFilterChange = (authorId) => {
+    this.setState({ filteredAuthorId: authorId });
   };
 
   handleDeleteCourse = async (course) => {
@@ -66,6 +46,8 @@ class CoursesPage extends React.Component {
   };
 
   render() {
+    const { courses, authors, loading } = this.props;
+
     return (
       <>
         {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
@@ -77,15 +59,21 @@ class CoursesPage extends React.Component {
         >
           Add Course
         </button>
-        {this.props.loading ? (
+        {loading ? (
           <Spinner />
-        ) : this.props.courses.length > 0 ? (
+        ) : courses.length > 0 ? (
           <>
             <CourseList
               onDeleteClick={this.handleDeleteCourse}
-              courses={this.state.filteredCourses}
-              authors={this.props.authors}
-              onAuthorFilterChange={this.filterCoursesByAuthor}
+              courses={
+                this.state.filteredAuthorId
+                  ? courses.filter(
+                      (course) => course.authorId == this.state.filteredAuthorId
+                    )
+                  : courses
+              }
+              authors={authors}
+              onAuthorFilterChange={this.handleAuthorFilterChange}
             />
           </>
         ) : (
