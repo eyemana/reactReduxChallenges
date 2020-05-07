@@ -14,22 +14,6 @@ const CourseForm = ({
 }) => {
   const [dirty, setDirty] = useState(false);
 
-  // useEffect(() => {
-  //   if (courses.length === 0) {
-  //     loadCourses().catch((error) => {
-  //       alert("Loading courses failed" + error);
-  //     });
-  //   } else {
-  //     setCourse({ ...props.course });
-  //   }
-
-  //   if (authors.length === 0) {
-  //     loadAuthors().catch((error) => {
-  //       alert("Loading authors failed" + error);
-  //     });
-  //   }
-  // }, [course]);
-
   const handleChange = (e) => {
     setDirty(true);
     onChange(e);
