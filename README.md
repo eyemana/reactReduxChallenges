@@ -5,4 +5,5 @@ This is my code base as I followed along with Cory House's PluralSight course on
   <li>Challenge #1 complete: authors admin with no Delete button for assigned authors and also mockApi validation.</li>
   <li>Challenge #2 is working.  Filter courses by author implemented by saving selected authorId (not entire filtered courses array).</li>
   <li>Challenge #3 complete: don't show CourseList when no results.</li>
+  <li>Challenge #4 complete: use Prompt component to prompt user before navigating away from CourseForm.</li>
 </ul>
