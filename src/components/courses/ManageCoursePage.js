@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
-import { loadAuthors } from "../../redux/actions/authorActions";
+import { loadAuthors, saveAuthor } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
@@ -14,6 +14,7 @@ export function ManageCoursePage({
   loadAuthors,
   loadCourses,
   saveCourse,
+  saveAuthor,
   history,
   ...props
 }) {
@@ -37,8 +38,7 @@ export function ManageCoursePage({
     }
   }, [props.course]);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+  function handleChange({ name, value }) {
     setCourse((prevCourse) => ({
       ...prevCourse,
       [name]: name === "authorId" ? parseInt(value, 10) : value,
@@ -73,6 +73,20 @@ export function ManageCoursePage({
       });
   }
 
+  function onCreateAuthor(author) {
+    //setSaving(true);
+    saveAuthor({ id: null, name: author.name })
+      .then((resp) => {
+        toast.success(`New author saved: ${author.name}`);
+        debugger;
+        return resp;
+      })
+      .catch((error) => {
+        //setSaving(false);
+        setErrors({ onCreateAuthor: error.message });
+      });
+  }
+
   //return authors.length === 0 || courses.length === 0 ? (
   return props.loading ? (
     <Spinner />
@@ -82,6 +96,7 @@ export function ManageCoursePage({
       errors={errors}
       authors={authors}
       onChange={handleChange}
+      onCreateAuthor={onCreateAuthor}
       onSave={handleSave}
       saving={saving}
     />
@@ -95,6 +110,7 @@ ManageCoursePage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   saveCourse: PropTypes.func.isRequired,
+  saveAuthor: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,
 };
@@ -121,6 +137,7 @@ const mapDispatchToProps = {
   loadCourses,
   loadAuthors,
   saveCourse,
+  saveAuthor,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
